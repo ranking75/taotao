@@ -1,0 +1,5 @@
+com\jy\util\IDUtils.class
+com\jy\request\BaseRequest.class
+com\jy\util\FtpUtil.class
+com\jy\request\product\ProductRequest.class
+com\jy\response\QueryResult.class

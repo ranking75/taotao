@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jy.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.jy.pojo.Product" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_title" property="productTitle" jdbcType="VARCHAR" />
+    <result column="product_pic" property="productPic" jdbcType="VARCHAR" />
+    <result column="product_status" property="productStatus" jdbcType="TINYINT" />
+    <result column="product_old_price" property="productOldPrice" jdbcType="DOUBLE" />
+    <result column="product_now_price" property="productNowPrice" jdbcType="DECIMAL" />
+    <result column="product_country" property="productCountry" jdbcType="VARCHAR" />
+    <result column="product_createtime" property="productCreatetime" jdbcType="TIMESTAMP" />
+    <result column="product_updatetime" property="productUpdatetime" jdbcType="TIMESTAMP" />
+    <result column="product_type_id" property="productTypeId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, product_id, product_name, product_title, product_pic, product_status, product_old_price, 
+    product_now_price, product_country, product_createtime, product_updatetime, product_type_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jy.pojo.ProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from product
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jy.pojo.ProductExample" >
+    delete from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jy.pojo.Product" >
+    insert into product (id, product_id, product_name, 
+      product_title, product_pic, product_status, 
+      product_old_price, product_now_price, product_country, 
+      product_createtime, product_updatetime, 
+      product_type_id)
+    values (#{id,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR}, 
+      #{productTitle,jdbcType=VARCHAR}, #{productPic,jdbcType=VARCHAR}, #{productStatus,jdbcType=TINYINT}, 
+      #{productOldPrice,jdbcType=DOUBLE}, #{productNowPrice,jdbcType=DECIMAL}, #{productCountry,jdbcType=VARCHAR}, 
+      #{productCreatetime,jdbcType=TIMESTAMP}, #{productUpdatetime,jdbcType=TIMESTAMP}, 
+      #{productTypeId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jy.pojo.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productTitle != null" >
+        product_title,
+      </if>
+      <if test="productPic != null" >
+        product_pic,
+      </if>
+      <if test="productStatus != null" >
+        product_status,
+      </if>
+      <if test="productOldPrice != null" >
+        product_old_price,
+      </if>
+      <if test="productNowPrice != null" >
+        product_now_price,
+      </if>
+      <if test="productCountry != null" >
+        product_country,
+      </if>
+      <if test="productCreatetime != null" >
+        product_createtime,
+      </if>
+      <if test="productUpdatetime != null" >
+        product_updatetime,
+      </if>
+      <if test="productTypeId != null" >
+        product_type_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productTitle != null" >
+        #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="productPic != null" >
+        #{productPic,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null" >
+        #{productStatus,jdbcType=TINYINT},
+      </if>
+      <if test="productOldPrice != null" >
+        #{productOldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productNowPrice != null" >
+        #{productNowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productCountry != null" >
+        #{productCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="productCreatetime != null" >
+        #{productCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productUpdatetime != null" >
+        #{productUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productTypeId != null" >
+        #{productTypeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jy.pojo.ProductExample" resultType="java.lang.Integer" >
+    select count(*) from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update product
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=BIGINT},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productTitle != null" >
+        product_title = #{record.productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productPic != null" >
+        product_pic = #{record.productPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productStatus != null" >
+        product_status = #{record.productStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.productOldPrice != null" >
+        product_old_price = #{record.productOldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.productNowPrice != null" >
+        product_now_price = #{record.productNowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.productCountry != null" >
+        product_country = #{record.productCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productCreatetime != null" >
+        product_createtime = #{record.productCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.productUpdatetime != null" >
+        product_updatetime = #{record.productUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.productTypeId != null" >
+        product_type_id = #{record.productTypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update product
+    set id = #{record.id,jdbcType=BIGINT},
+      product_id = #{record.productId,jdbcType=BIGINT},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      product_title = #{record.productTitle,jdbcType=VARCHAR},
+      product_pic = #{record.productPic,jdbcType=VARCHAR},
+      product_status = #{record.productStatus,jdbcType=TINYINT},
+      product_old_price = #{record.productOldPrice,jdbcType=DOUBLE},
+      product_now_price = #{record.productNowPrice,jdbcType=DECIMAL},
+      product_country = #{record.productCountry,jdbcType=VARCHAR},
+      product_createtime = #{record.productCreatetime,jdbcType=TIMESTAMP},
+      product_updatetime = #{record.productUpdatetime,jdbcType=TIMESTAMP},
+      product_type_id = #{record.productTypeId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jy.pojo.Product" >
+    update product
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productTitle != null" >
+        product_title = #{productTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="productPic != null" >
+        product_pic = #{productPic,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null" >
+        product_status = #{productStatus,jdbcType=TINYINT},
+      </if>
+      <if test="productOldPrice != null" >
+        product_old_price = #{productOldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productNowPrice != null" >
+        product_now_price = #{productNowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productCountry != null" >
+        product_country = #{productCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="productCreatetime != null" >
+        product_createtime = #{productCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productUpdatetime != null" >
+        product_updatetime = #{productUpdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productTypeId != null" >
+        product_type_id = #{productTypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jy.pojo.Product" >
+    update product
+    set product_id = #{productId,jdbcType=BIGINT},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_title = #{productTitle,jdbcType=VARCHAR},
+      product_pic = #{productPic,jdbcType=VARCHAR},
+      product_status = #{productStatus,jdbcType=TINYINT},
+      product_old_price = #{productOldPrice,jdbcType=DOUBLE},
+      product_now_price = #{productNowPrice,jdbcType=DECIMAL},
+      product_country = #{productCountry,jdbcType=VARCHAR},
+      product_createtime = #{productCreatetime,jdbcType=TIMESTAMP},
+      product_updatetime = #{productUpdatetime,jdbcType=TIMESTAMP},
+      product_type_id = #{productTypeId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,4 @@
+com\jy\service\product\type\ProductTypeService.class
+com\jy\service\product\ProductService.class
+com\jy\service\product\type\ProductTypeServiceImpl.class
+com\jy\service\product\ProductServiceImpl.class
