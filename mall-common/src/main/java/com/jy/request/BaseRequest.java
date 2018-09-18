@@ -2,6 +2,9 @@ package com.jy.request;
 
 import java.io.Serializable;
 
+/**
+ * 基本请求
+ */
 public class BaseRequest {
 
     private int page;

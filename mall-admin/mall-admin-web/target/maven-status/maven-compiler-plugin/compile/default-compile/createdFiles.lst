@@ -1,9 +1,10 @@
 com\jy\aop\config\annoation\Login.class
+com\jy\controller\pic\PictureController.class
 com\jy\aop\config\init\ConfigInit.class
 com\jy\controller\product\type\ProductTypeController.class
 com\jy\controller\page\PageController.class
-com\jy\aop\config\Test.class
 com\jy\interceptor\LoginInterceptor.class
 com\jy\aop\config\annoation\Config.class
+com\jy\aop\config\ConfigTest.class
 com\jy\controller\IndexController.class
 com\jy\controller\product\ProductController.class
