@@ -4,6 +4,9 @@ import com.jy.request.BaseRequest;
 
 import java.io.Serializable;
 
+/**
+ * 商品查询请求
+ */
 public class ProductRequest extends BaseRequest implements Serializable {
 
 

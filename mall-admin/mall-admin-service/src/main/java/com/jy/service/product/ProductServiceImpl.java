@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
         List<Product> list = productMapper.selectByExample(example);
         result.ok();
         result.setPage(request.getPage());
-        result.setObj(list);
+        result.setObjs(list);
         result.setCount(list.size());
         return result;
     }

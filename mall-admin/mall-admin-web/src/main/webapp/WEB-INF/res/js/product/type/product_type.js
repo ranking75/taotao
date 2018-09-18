@@ -23,25 +23,6 @@ $(function(){
     //     { id:42, pId:14, name:"照相机 "},
     //     { id:55,pId:11,name:"橘子"}
     // ];
-    var zNodes =[
-        { productTypeId:1, productTypeParentId:0, name:"商城分类列表", open:true},
-        { productTypeId:11, productTypeParentId:1, name:"蔬菜水果"},
-        { productTypeId:111, productTypeParentId:11, name:"蔬菜"},
-        { productTypeId:112, productTypeParentId:11, name:"苹果"},
-        { productTypeId:113, productTypeParentId:11, name:"大蒜"},
-        { productTypeId:114, productTypeParentId:11, name:"白菜"},
-        { productTypeId:115, productTypeParentId:11, name:"青菜"},
-        { productTypeId:12, productTypeParentId:1, name:"手机数码"},
-        { productTypeId:121, productTypeParentId:12, name:"手机 "},
-        { productTypeId:122, productTypeParentId:12, name:"照相机 "},
-        { productTypeId:13, productTypeParentId:1, name:"电脑配件"},
-        { productTypeId:131, productTypeParentId:13, name:"手机 "},
-        { productTypeId:122, productTypeParentId:13, name:"照相机 "},
-        { productTypeId:14, productTypeParentId:1, name:"服装鞋帽"},
-        { productTypeId:141, productTypeParentId:14, name:"手机 "},
-        { productTypeId:42, productTypeParentId:14, name:"照相机 "},
-    ];
-    console.log(zNodes);
     t = $.fn.zTree.init(t, setting, loadNodeData());
     demoIframe = $("#testIframe");
     demoIframe.bind("load", loadReady);
@@ -99,7 +80,7 @@ function loadNodeData(){
     var types = [];
     $.get("../productType/getAllProductType",{},function(result){
         if(result.code == 200){
-            var obj = result.obj;
+            var obj = result.objs;
             for(var i=0;i<obj.length;i++){
                 types[i] = obj[i];
             }

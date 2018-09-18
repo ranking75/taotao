@@ -24,7 +24,7 @@ public class ProductTypeController {
     public Result<ProductType> getAllProductType(){
         Result<ProductType> result = new Result<ProductType>();
         List<ProductType> list = productTypeService.getProductTypes();
-        result.setObj(list);
+        result.setObjs(list);
         result.ok();
         return result;
     }
